@@ -1,10 +1,7 @@
 
-const Header  = require('demo/Header');
+const PReact = require('PseudoReact');
+const App    = require('demo/App');
 
 $(window).on('load', function() {
-  let h = new Header();
-  h.insert('#root');
-  h.update();
-
-  setInterval(() => h.update(), 1000);
+  PReact.render(App, $('#root'));
 });
