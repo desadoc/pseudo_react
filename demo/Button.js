@@ -4,6 +4,9 @@ function _M_Button() {
 
   function Button(props) {
     this.super.call(this, props);
+    this.state = {
+      text: 'Click me!'
+    };
     this.onClick = this.onClick.bind(this);
   }
   PReact.extend(Button);
@@ -11,10 +14,13 @@ function _M_Button() {
   Button.prototype.render = function() {
     return `
       <button id="${this.id}" type="button">
-        Click me!
+        ${this.state.text}
       </button>`;
   };
   Button.prototype.onClick = function(evt) {
+    this.setState.call(this, function(state) {
+      return { text: 'Not again!' };
+    });
     return this.props.onClick && this.props.onClick(evt);
   };
   Button.prototype.componentDidRender = function() {
