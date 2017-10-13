@@ -1,6 +1,7 @@
 
 function _M_App() {
   const PReact = require('PseudoReact');
+  const Button = require('demo/Button');
 
   function App(props) {
     this.super.call(this, props);
@@ -9,6 +10,10 @@ function _M_App() {
     };
 
     this.onBtnClick = this.onBtnClick.bind(this);
+
+    this.button = new Button({
+      onClick: this.onBtnClick
+    });
   }
   PReact.extend(App);
 
@@ -16,9 +21,7 @@ function _M_App() {
     return `
       <div id="${this.id}">
         <h1>Counter: ${this.state.counter}</h1>
-        <button id="${this.id}_btn" type="button">
-          Click me!
-        </button>
+        ${this.button.render()}
       </div>`;
   };
   App.prototype.onBtnClick = function(evt) {
@@ -27,7 +30,7 @@ function _M_App() {
     });
   };
   App.prototype.componentDidRender = function() {
-    $(`#${this.id}_btn`).on('click', this.onBtnClick);
+    this.button.componentDidRender();
   };
 
   return App;
