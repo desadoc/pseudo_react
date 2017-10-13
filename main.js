@@ -43,8 +43,15 @@ function _M_PseudoReact() {
     update: function() {
       $(this.render()).replaceAll(`#${this.id}`);
       return this.componentDidRender && this.componentDidRender();
-    }
+    },
+
   };
+
+  function extend(SomeClass) {
+    SomeClass.prototype = new Component();
+    SomeClass.prototype.constructor = SomeClass;
+    SomeClass.prototype.super = Component;
+  }
 
   function render(SomeClass, parentEl) {
     const el = new SomeClass();
@@ -53,7 +60,7 @@ function _M_PseudoReact() {
   }
 
   return {
-    Component, render
+    Component, render, extend
   };
 };
 

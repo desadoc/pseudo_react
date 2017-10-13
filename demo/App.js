@@ -3,16 +3,14 @@ function _M_App() {
   const PReact = require('PseudoReact');
 
   function App(props) {
+    this.super.call(this, props);
     this.state = {
       counter: 1
     };
-    //this.render = this.render.bind(this);
+
     this.onBtnClick = this.onBtnClick.bind(this);
-    //this.componentDidRender = this.componentDidRender.bind(this);
   }
-  App.prototype = new PReact.Component();
-  App.prototype.constructor = App;
-  //App.prototype.super = PReact.Component;
+  PReact.extend(App);
 
   App.prototype.render = function() {
     return `
